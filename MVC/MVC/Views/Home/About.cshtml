@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<hgroup class="title">
+    <h1>About Read Later</h1>
+</hgroup>
+
+<article>
+    <h3>Overview</h3>
+    <p>
+        Read Later is a fictional service designed to allow users to bookmark webpages they want to read later.  It has been designed to follow general good practices within
+        coding and to test your knowledge of these.  Thesolution uses a multi tiered approach, with POCO entities being used to represent objects in the system, a Repository pattern to
+        manage the data access, and a service layer to handle all functionality.
+    </p>
+
+    <h3>Visual Studio 2017 solution</h3>
+    <p>
+        The solution consists of 5 projects:
+    </p>
+    <ul>
+        <li>
+            <h5>Data</h5>
+            The data project handles the communication with the database and is using Entity Framework (Code first approach - <a href="http://msdn.microsoft.com/en-gb/data/ee712907.aspx#codefirst" target="_BLANK">more information here</a>).
+            Migrations are enabled already - to initialise your database you will need to enter a connection string to Sql Server in app.config, then in package manager console ensure that Data is the selected project and
+            enter the command update-database.  this will create the database (if it is not there already), and generate the tables based on the existing entities.
+        </li>
+        <li>
+            <h5>Entities</h5>
+            The Entities project contains the <a href="http://en.wikipedia.org/wiki/Plain_Old_CLR_Object" target="_BLANK">POCO</a> classes that represent the system objects.  These inherit from EntityBase which implements
+            the IObjectState interface, giving us a way of explicitly marking the classes as modified / added etc
+        </li>
+        <li>
+            <h5>Repository</h5>
+            The Repository layer provides data access functionality to the service layer.  A generic repository class is used to prevent the need for separate repositories for each Entity, unless very specialised functionality is required.
+            A helper class is also provided (RepositoryQuery) which enables queries to be built up in a fluent manner
+        </li>
+        <li>
+            <h5>Services</h5>
+            Services expose the functionality to the UI layer.
+        </li>
+        <li>
+            <h5>MVC</h5>
+            The web layer is an ASP.net MVC 5 project using the standard templates provided.  Dependency Injection is managed from here and the DI / IoC framwork used is <a href="https://simpleinjector.codeplex.com/">Simple Injector</a>.  It is very
+            straightforward to use and all configuration takes place in app_start/SimpleInjectorInitializer.cs
+        </li>
+    </ul>
+
+    <h3>Quick Start</h3>
+    <ol>
+        <li>Open solution in Visual Studio 2017</li>
+        <li>Update the connection string in data/app.config and ReadLaterWeb/web.config to point to a Sql Server / Sql Server Express instance (no need to create a database)</li>
+        <li>In Package Manager Console, ensure the Data project is selected and run the command 'update-database'</li>
+        <li>Your database will be created if necessary, and the tables created</li>
+    </ol>
+
+</article>
+
+<aside>
+    <h3>Questions?</h3>
+    <p>
+        If you have any questions or need any further information, please email rob@sopro.io
+    </p>
+</aside>
